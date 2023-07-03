@@ -4,7 +4,7 @@ import json
 import threading
 
 import easyimap as e
-from Jobs.models import Job, JobBegin
+from Jobs.models import Job, JobBegin, Leave
 from users.models import Customer, Roles
 
 from django.contrib import messages
@@ -49,7 +49,7 @@ class EmailReceiveThread(threading.Thread):
 def dashboard(request):
     if request.user.is_authenticated:
         quotation = Quotation.objects.all()
-        job_begin = JobBegin.objects.all()
+        job_begin = Leave.objects.all()
         jobs = Job.objects.all()
         flags = jobs.filter(user=request.user)
         job = quotation.filter(status="Quotation Email Sent").count()

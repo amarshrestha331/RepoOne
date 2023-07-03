@@ -36,6 +36,7 @@ def list_bonus(request):
     context = {"bonus": bonus}
     return render(request, "payroll/bonus.html", context)
 
+
 @allowed_users(allowed_roles=["Manager"])
 def create_bonus(request):
     bonusForm = BonusForm()
@@ -167,7 +168,7 @@ def update_leave(request, pk):
             messages.success(request, "Leave Updated")
         return redirect("list_leave")
     context = {"form": form}
-    return render(request, "quotation/work_of_scope.html", context)
+    return render(request, "payroll/leave_create.html", context)
 
 
 # Salary
@@ -176,6 +177,7 @@ def list_salary(request):
     salary = Salary.objects.all()
     context = {"salary": salary}
     return render(request, "payroll/payroll.list.html", context)
+
 
 @allowed_users(allowed_roles=["Manger"])
 def create_salary(request):
