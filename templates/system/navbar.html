@@ -42,11 +42,7 @@
 
 </body>
 
-{% if request.user.roles == 'Manger' %}
 
-
-
-{% endif %}
 <div id="pcoded" class="pcoded">
 <div class="pcoded-overlay-box"></div>
 <div class="pcoded-container navbar-wrapper">
@@ -236,152 +232,82 @@ I'm just looking around. Will you tell me something about yourself?
 
 
 <li class="pcoded-hasmenu">
+    <div class="pcoded-navigatio-lavel">Manage</div>
+    <ul class="pcoded-item pcoded-left-item">
+        {% if request.user.roles.name == 'Admin' %}
+            <!-- Admin menu items -->
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="fas fa-user-plus"></i></span>
+                    <span class="pcoded-mtext hvr-grow">Manage User</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="{% url 'user' %}">
+                            <span class="pcoded-mtext hvr-grow">Add User</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'user_list' %}">
+                            <span class="pcoded-mtext hvr-grow">User List</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'role_list' %}">
+                            <span class="pcoded-mtext hvr-grow">Roles List</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="fas fa-wallet"></i></span>
+                    <span class="pcoded-mtext hvr-grow">Manage Salary</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="{% url 'create_bonus' %}">
+                            <span class="pcoded-mtext hvr-grow">Add Bonus</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'list_bonus' %}">
+                            <span class="pcoded-mtext hvr-grow">Bonus List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'lists_salary' %}">
+                            <span class="pcoded-mtext hvr-grow">Salary List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'create_salary' %}">
+                            <span class="pcoded-mtext hvr-grow">Add Salary</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
 
-
-<div class="pcoded-navigatio-lavel ">Manage</div>
-
-<ul class="pcoded-item pcoded-left-item">
-<li class="pcoded-hasmenu">
-    {%  if request.user.roles.name == 'Employees' or request.user.roles.name == 'Writer' %}
-
-
- 
-
-
-    {% else %}
-
-  {% endif %}
-
-
-
-
-{%  if request.user.roles.name == "Admin" %}
-
-<li class="pcoded-hasmenu">
-
-
-
-  {% else %}
-<li class="pcoded-hasmenu">
-<a href="javascript:void(0)">
-<span class="pcoded-micon"><i class="fas fa-user-plus"></i></span>
-<span class="pcoded-mtext hvr-grow">Manage User</span>
-</a>
-<ul class="pcoded-submenu">
-<li class="">
-<a href="{% url 'user' %}">
-<span class="pcoded-mtext hvr-grow">Add User</span>
-</a>
-</li>
-<li class="">
-<a href="{% url 'user_list' %}">
-<span class="pcoded-mtext hvr-grow">User List</span>
-</a>
-</li>
-
-<li class="">
-<a href="{% url 'role_list' %}">
-<span class="pcoded-mtext hvr-grow">Roles List</span>
-</a>
-</li>
-</ul>
-</li>
-    {% endif %}
-
-    {%  if request.user.roles.name == 'Employee' or request.user.roles.name == 'Admin' %}
-<li class="pcoded-hasmenu">
-<a href="javascript:void(0)">
-<span class="pcoded-micon"><i class="fa-solid fa-list"></i></span>
-<span class="pcoded-mtext hvr-grow">Manage Task</span>
-</a>
-<ul class="pcoded-submenu">
-
-<li class=" ">
-<a href="{% url 'quotation_list' %}">
-<span class="pcoded-mtext hvr-grow">Task List</span>
-</a>
-</li>
-
-<li>
-<a href="{% url 'quotation-list_type' %}">
-<span class="pcoded-mtext hvr-grow">Task Type List</span>
-</a>
-</li>
-</li>
-
-  <li class="pcoded-hasmenu">
-<a href="javascript:void(0)">
-<span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
-<span class="pcoded-mtext hvr-grow">Manage Leave</span>
-</a>
-<ul class="pcoded-submenu">
-<li class=" ">
-<a href="{% url 'quotation-create' %}">
-<span class="pcoded-mtext hvr-grow">Add Leave</span>
-</a>
-</li>
-<li class=" ">
-<a href="{% url 'list_leave' %}">
-<span class="pcoded-mtext hvr-grow">Leave List</span>
-</a>
-</li>
-</li>
-<li class="pcoded-hasmenu">
-  <a href="javascript:void(0)">
-  <span class="pcoded-micon"><i class="fas fa-wallet"></i></span>
-  <span class="pcoded-mtext hvr-grow">Manage Salary</span>
-  </a>
-  <ul class="pcoded-submenu">
-<li class=" ">
-<a href="{% url 'quotation-create_type' %}">
-<span class="pcoded-mtext hvr-grow">Add Bonus </span>
-</a>
-</li>
-<li>
-  <a href="{% url 'list_bonus' %}">
-<span class="pcoded-mtext hvr-grow">Bonus List</span>
-</a>
-</li>
-  <li>
-  <a href="{% url 'list_salary' %}">
-<span class="pcoded-mtext hvr-grow">Salary List</span>
-</a>
-</li>
-
-    <li>
-  <a href="{% url 'quotation-list_type' %}">
-<span class="pcoded-mtext hvr-grow">Add Salary</span>
-</a>
-</li>
-</li>
-
-
-
-
-
-</ul>
-</li>
-
-    {% else %}
-<li class="pcoded-hasmenu">
-<a href="javascript:void(0)">
-<span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
-<span class="pcoded-mtext hvr-grow">Manage Task</span>
-</a>
-<ul class="pcoded-submenu">
-<li class=" ">
-<a href="{% url 'quotation-create' %}">
-<span class="pcoded-mtext hvr-grow">Add Task</span>
-</a>
-</li>
-<li class=" ">
-<a href="{% url 'quotation_list' %}">
-<span class="pcoded-mtext hvr-grow">Task List</span>
-</a>
-</li>
-<li class=" ">
-<a href="{% url 'quotation-create_type' %}">
+              <li class="pcoded-hasmenu">
+            <a href="javascript:void(0)">
+                <span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
+                <span class="pcoded-mtext hvr-grow">Manage Task</span>
+            </a>
+            <ul class="pcoded-submenu">
+                <li class="">
+                    <a href="{% url 'quotation-create' %}">
+                        <span class="pcoded-mtext hvr-grow">Add Task</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{% url 'quotation_list' %}">
+                        <span class="pcoded-mtext hvr-grow">Task List</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{% url 'quotation-create_type' %}">
+                        <span class="pcoded-m```django
 <span class="pcoded-mtext hvr-grow">Add Task Type</span>
 </a>
 </li>
@@ -390,20 +316,12 @@ I'm just looking around. Will you tell me something about yourself?
 <span class="pcoded-mtext hvr-grow">Task Type List</span>
 </a>
 </li>
-
-
-
-
-
-
-
-
 </ul>
 </li>
 
-  <li class="pcoded-hasmenu">
+<li class="pcoded-hasmenu">
 <a href="javascript:void(0)">
-<span class="pcoded-micon"><i class="fas fa-wallet"></i></span>
+<span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
 <span class="pcoded-mtext hvr-grow">Manage Leave</span>
 </a>
 <ul class="pcoded-submenu">
@@ -418,62 +336,161 @@ I'm just looking around. Will you tell me something about yourself?
 </a>
 </li>
 </ul>
+</li>
 
 <li class="pcoded-hasmenu">
-  <a href="javascript:void(0)">
-  <span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
-  <span class="pcoded-mtext hvr-grow">Manage Salary</span>
-  </a>
-  <ul class="pcoded-submenu">
-<li class=" ">
-<a href="{% url 'create_bonus' %}">
-<span class="pcoded-mtext hvr-grow">Add Bonus </span>
+<a href="javascript:void(0)">
+<span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
+<span class="pcoded-mtext hvr-grow">Manage Attendance</span>
 </a>
-</li>
+<ul class="pcoded-submenu">
 <li>
-  <a href="{% url 'list_bonus' %}">
-<span class="pcoded-mtext hvr-grow">Bonus List</span>
-</a>
-</li>
-  <li>
-  <a href="{% url 'lists_salary' %}">
-<span class="pcoded-mtext hvr-grow">Salary List</span>
-</a>
-</li>
-
-    <li>
-  <a href="{% url 'create_salary' %}">
-<span class="pcoded-mtext hvr-grow">Add Salary</span>
-</a>
-</li>
-
-</ul>
-
-<li class="pcoded-hasmenu">
-  <a href="javascript:void(0)">
-  <span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
-  <span class="pcoded-mtext hvr-grow">Manage Attendance</span>
-  </a>
-  <ul class="pcoded-submenu">
-     <li>
-  <a href="{% url 'create_attendance' %}">
+<a href="{% url 'create_attendance' %}">
 <span class="pcoded-mtext hvr-grow">Attendance</span>
 </a>
-
 </li>
-
 <li>
 <a href="{% url 'list_attendance' %}">
 <span class="pcoded-mtext hvr-grow">Attendance List</span>
 </a>
 </li>
+</ul>
+</li>
+</ul>
+</li>
+        {% elif request.user.roles.name == 'Manager' %}
+            <!-- Manager menu items -->
+                       <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="fas fa-wallet"></i></span>
+                    <span class="pcoded-mtext hvr-grow">View Bonus</span>
+                </a>
+                <ul class="pcoded-submenu">
+
+                    <li>
+                        <a href="{% url 'list_bonus' %}">
+                            <span class="pcoded-mtext hvr-grow">Bonus List</span>
+                        </a>
+                    </li>
 
 
+                </ul>
+            </li>
 
-    {% endif %}
 
+              <li class="pcoded-hasmenu">
+            <a href="javascript:void(0)">
+                <span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
+                <span class="pcoded-mtext hvr-grow">Manage Task</span>
+            </a>
+            <ul class="pcoded-submenu">
+                <li class="">
+                    <a href="{% url 'quotation-create' %}">
+                        <span class="pcoded-mtext hvr-grow">Add Task</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{% url 'quotation_list' %}">
+                        <span class="pcoded-mtext hvr-grow">Task List</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{% url 'quotation-create_type' %}">
+                        <span class="pcoded-m```django
+<span class="pcoded-mtext hvr-grow">Add Task Type</span>
+</a>
+</li>
+<li>
+<a href="{% url 'quotation-list_type' %}">
+<span class="pcoded-mtext hvr-grow">Task Type List</span>
+</a>
+</li>
+</ul>
+</li>
 
+<li class="pcoded-hasmenu">
+<a href="javascript:void(0)">
+<span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
+<span class="pcoded-mtext hvr-grow">Manage Leave</span>
+</a>
+<ul class="pcoded-submenu">
+<li class=" ">
+<a href="{% url 'create_leave' %}">
+<span class="pcoded-mtext hvr-grow">Add Leave</span>
+</a>
+</li>
+<li class=" ">
+<a href="{% url 'list_leave' %}">
+<span class="pcoded-mtext hvr-grow">Leave List</span>
+</a>
+</li>
+</ul>
+</li>
 
+<li class="pcoded-hasmenu">
+<a href="javascript:void(0)">
+<span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
+<span class="pcoded-mtext hvr-grow">Manage Attendance</span>
+</a>
+<ul class="pcoded-submenu">
+<li>
+<a href="{% url 'create_attendance' %}">
+<span class="pcoded-mtext hvr-grow">Attendance</span>
+</a>
+</li>
+<li>
+<a href="{% url 'list_attendance' %}">
+<span class="pcoded-mtext hvr-grow">Attendance List</span>
+</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+        {% else %}
+            <!-- Worker menu items -->
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
+                    <span class="pcoded-mtext hvr-grow">Assigned Task</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="{% url 'quotation_list' %}">
+                            <span class="pcoded-mtext hvr-grow">Task List</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
+                    <span class="pcoded-mtext hvr-grow">Clock In</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li>
+                        <a href="{% url 'create_attendance' %}">
+                            <span class="pcoded-mtext hvr-grow">Attendance</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
+                    <span class="pcoded-mtext hvr-grow">Take a  Leave</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="{% url 'create_leave' %}">
+                            <span class="pcoded-mtext hvr-grow">Add Leave</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        {% endif %}
+    </ul>
+</li>
 
 
 
@@ -481,12 +498,5 @@ I'm just looking around. Will you tell me something about yourself?
 
 </ul>
 
-
-
-
-
-
-
-</ul>
 </div>
 </nav>

@@ -4,6 +4,7 @@ from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import Permission, PermissionsMixin
 from django.db import models
 
+
 # Create your models here.
 
 
@@ -42,19 +43,18 @@ class UserManger(BaseUserManager):
 class Roles(models.Model):
     MANAGER = "Manager"
     Worker = "Worker"
-   
+    Admin = "Admin"
 
     Roles_TYPE = (
         (
-
+            (Admin, Admin),
             (MANAGER, MANAGER),
             (Worker, Worker),
-       
 
         )
     )
-    name = models.CharField(choices=Roles_TYPE,max_length=30, null=False, blank=False, unique=True)
-    description = models.CharField(max_length=100,null=True,blank=False)
+    name = models.CharField(choices=Roles_TYPE, max_length=30, null=False, blank=False, unique=True)
+    description = models.CharField(max_length=100, null=True, blank=False)
 
     permissions = models.ManyToManyField(
         Permission,
@@ -64,7 +64,6 @@ class Roles(models.Model):
 
     def __str__(self):
         return self.name
-
 
 
 class Customer(AbstractBaseUser, PermissionsMixin):
