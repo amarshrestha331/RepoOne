@@ -55,7 +55,7 @@
 
 </a>
 <a href="{% url 'dashboard' %}">
-<img class="img-fluid " src="{% static 'img/logoo.png' %}" alt="Theme-Logo">
+<img class="img-fluid " src="{% static 'img/sd.png' %}" alt="Theme-Logo">
 </a>
 <a class="mobile-options">
 <i class="feather icon-more-horizontal"></i>
@@ -265,6 +265,16 @@ I'm just looking around. Will you tell me something about yourself?
                     <span class="pcoded-mtext hvr-grow">Manage Salary</span>
                 </a>
                 <ul class="pcoded-submenu">
+                    <li>
+                        <a href="{% url 'create_salary' %}">
+                            <span class="pcoded-mtext hvr-grow">Add Salary</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'lists_salary' %}">
+                            <span class="pcoded-mtext hvr-grow">Salary List</span>
+                        </a>
+                    </li>
                     <li class="">
                         <a href="{% url 'create_bonus' %}">
                             <span class="pcoded-mtext hvr-grow">Add Bonus</span>
@@ -275,16 +285,7 @@ I'm just looking around. Will you tell me something about yourself?
                             <span class="pcoded-mtext hvr-grow">Bonus List</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{% url 'lists_salary' %}">
-                            <span class="pcoded-mtext hvr-grow">Salary List</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'create_salary' %}">
-                            <span class="pcoded-mtext hvr-grow">Add Salary</span>
-                        </a>
-                    </li>
+                
                 </ul>
             </li>
 
@@ -307,7 +308,6 @@ I'm just looking around. Will you tell me something about yourself?
                 </li>
                 <li class="">
                     <a href="{% url 'quotation-create_type' %}">
-                        <span class="pcoded-m```django
 <span class="pcoded-mtext hvr-grow">Add Task Type</span>
 </a>
 </li>
@@ -321,7 +321,7 @@ I'm just looking around. Will you tell me something about yourself?
 
 <li class="pcoded-hasmenu">
 <a href="javascript:void(0)">
-<span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
+<span class="pcoded-micon"><i class="far fa-newspaper"></i></span>
 <span class="pcoded-mtext hvr-grow">Manage Leave</span>
 </a>
 <ul class="pcoded-submenu">
@@ -340,7 +340,7 @@ I'm just looking around. Will you tell me something about yourself?
 
 <li class="pcoded-hasmenu">
 <a href="javascript:void(0)">
-<span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
+<span class="pcoded-micon"><i class="fas fa-user-check"></i></span>
 <span class="pcoded-mtext hvr-grow">Manage Attendance</span>
 </a>
 <ul class="pcoded-submenu">
@@ -363,9 +363,14 @@ I'm just looking around. Will you tell me something about yourself?
                        <li class="pcoded-hasmenu">
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="fas fa-wallet"></i></span>
-                    <span class="pcoded-mtext hvr-grow">View Bonus</span>
+                    <span class="pcoded-mtext hvr-grow">Payroll</span>
                 </a>
                 <ul class="pcoded-submenu">
+                    <li>
+                        <a href="{% url 'lists_salary' %}">
+                            <span class="pcoded-mtext hvr-grow">Salary List</span>
+                        </a>
+                    </li>
 
                     <li>
                         <a href="{% url 'list_bonus' %}">
@@ -396,7 +401,7 @@ I'm just looking around. Will you tell me something about yourself?
                 </li>
                 <li class="">
                     <a href="{% url 'quotation-create_type' %}">
-                        <span class="pcoded-m```django
+                   
 <span class="pcoded-mtext hvr-grow">Add Task Type</span>
 </a>
 </li>
@@ -410,7 +415,7 @@ I'm just looking around. Will you tell me something about yourself?
 
 <li class="pcoded-hasmenu">
 <a href="javascript:void(0)">
-<span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
+<span class="pcoded-micon"><i class="far fa-newspaper"></i></span>
 <span class="pcoded-mtext hvr-grow">Manage Leave</span>
 </a>
 <ul class="pcoded-submenu">
@@ -429,7 +434,7 @@ I'm just looking around. Will you tell me something about yourself?
 
 <li class="pcoded-hasmenu">
 <a href="javascript:void(0)">
-<span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
+<span class="pcoded-micon"><i class="fas fa-user-check"></i></span>
 <span class="pcoded-mtext hvr-grow">Manage Attendance</span>
 </a>
 <ul class="pcoded-submenu">
@@ -449,6 +454,28 @@ I'm just looking around. Will you tell me something about yourself?
 </li>
         {% else %}
             <!-- Worker menu items -->
+
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="fas fa-wallet"></i></span>
+                    <span class="pcoded-mtext hvr-grow">Payroll</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li>
+                        <a href="{% url 'lists_salary' %}">
+                            <span class="pcoded-mtext hvr-grow">Salary List</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'list_bonus' %}">
+                            <span class="pcoded-mtext hvr-grow">Bonus List</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
             <li class="pcoded-hasmenu">
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
@@ -464,7 +491,7 @@ I'm just looking around. Will you tell me something about yourself?
             </li>
             <li class="pcoded-hasmenu">
                 <a href="javascript:void(0)">
-                    <span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
+                    <span class="pcoded-micon"><i class="fas fa-user-clock"></i></span>
                     <span class="pcoded-mtext hvr-grow">Clock In</span>
                 </a>
                 <ul class="pcoded-submenu">
@@ -477,7 +504,7 @@ I'm just looking around. Will you tell me something about yourself?
             </li>
             <li class="pcoded-hasmenu">
                 <a href="javascript:void(0)">
-                    <span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
+                    <span class="pcoded-micon"><i class="far fa-newspaper"></i></span>
                     <span class="pcoded-mtext hvr-grow">Take a  Leave</span>
                 </a>
                 <ul class="pcoded-submenu">

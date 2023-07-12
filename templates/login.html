@@ -117,7 +117,19 @@ name="password"
 id="password"
 class="form-control form-control-md"
 />
+<input type="checkbox" id="togglePassword" class="btn btn-primary" onclick="togglePasswordField()">Show Password
 </div>
+
+<script>
+    function togglePasswordField() {
+      var passwordField = document.getElementById("password");
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+      } else {
+        passwordField.type = "password";
+      }
+    }
+  </script>
 
 <div class="pt-1 mb-4">
 <button
