@@ -480,14 +480,25 @@ I'm just looking around. Will you tell me something about yourself?
                     <span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
                     <span class="pcoded-mtext hvr-grow">Take a  Leave</span>
                 </a>
-                <ul class="pcoded-submenu">
-                    <li class="">
-                        <a href="{% url 'create_leave' %}">
-                            <span class="pcoded-mtext hvr-grow">Add Leave</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+
+                <li class="pcoded-hasmenu">
+<a href="javascript:void(0)">
+<span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
+<span class="pcoded-mtext hvr-grow">Manage Leave</span>
+</a>
+<ul class="pcoded-submenu">
+<li class=" ">
+<a href="{% url 'create_leave' %}">
+<span class="pcoded-mtext hvr-grow">Add Leave</span>
+</a>
+</li>
+<li class=" ">
+<a href="{% url 'list_leave' %}">
+<span class="pcoded-mtext hvr-grow">Leave List</span>
+</a>
+</li>
+</ul>
+</li>
         {% endif %}
     </ul>
 </li>

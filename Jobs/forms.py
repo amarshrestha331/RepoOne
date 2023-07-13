@@ -28,7 +28,7 @@ class LeaveForm(ModelForm):
 
     class Meta:
         model = Leave
-        exclude = ("total_leave_remaining", "created_at", "total_leave")
+        exclude = ("total_leave_remaining", "created_at", "total_leave", 'user')
 
 
 class BonusForm(ModelForm):
