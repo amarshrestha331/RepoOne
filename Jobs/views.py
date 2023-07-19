@@ -1,6 +1,8 @@
 import threading
 
 from users.models import Customer
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 
 from django.contrib import messages
 from django.core.mail import EmailMessage
@@ -18,6 +20,9 @@ from .models import Salary, Bonus, Leave
 
 # Create your views here.
 
+def is_worker1(user):
+    return user.roles.filter(name='worker1').exists()
+
 
 class EmailThread(threading.Thread):
 
@@ -30,9 +35,11 @@ class EmailThread(threading.Thread):
 
 
 # Bonus
-@allowed_users(allowed_roles=["Manager"])
 def list_bonus(request):
-    bonus = Bonus.objects.all()
+    if request.user.roles.name == 'Worker':
+        bonus = Bonus.objects.filter(user=request.user)
+    else:
+        bonus = Bonus.objects.all()
     context = {"bonus": bonus}
     return render(request, "payroll/bonus.html", context)
 
@@ -79,9 +86,12 @@ def delete_bonus(request, pk):
 # Attendance
 
 def list_attendance(request):
-    attendance = Attendance.objects.all()
+    if request.user.roles.name == 'Worker':
+        attendance = Attendance.objects.filter(user=request.user)
+    else:
+        attendance = Attendance.objects.all()
     context = {"attendance": attendance}
-    return render(request, 'payroll/list_attendance.html', context)
+    return render(request, "payroll/list_attendance.html", context)
 
 
 def create_attendance(request):
@@ -127,8 +137,13 @@ def delete_attendance(request, pk):
 
 # Leave
 
+
+@login_required
 def list_leave(request):
-    leave = Leave.objects.all()
+    if request.user.roles.name == 'Worker':
+        leave = Leave.objects.filter(user=request.user)
+    else:
+        leave = Leave.objects.all()
     context = {"leave": leave}
     return render(request, "payroll/leave.list.html", context)
 
@@ -138,9 +153,11 @@ def create_leave(request):
     if request.method == "POST":
         leave_form = LeaveForm(request.POST)
         if leave_form.is_valid():
-            leave_form.save()
+            leave = leave_form.save(commit=False)  # Get the leave instance without saving to the database yet
+            leave.user = request.user  # Set the current user as the user for the leave instance
+            leave.save()  # Save the leave instance with the updated user
             messages.success(request, "Leave created")
-        return redirect("list_leave")
+            return redirect("list_leave")
     context = {"form": leave_form}
     return render(request, "payroll/leave_create.html", context)
 
@@ -159,14 +176,16 @@ def delete_leave(request, pk):
 
 @allowed_users(allowed_roles=["Manger"])
 def update_leave(request, pk):
-    leave_form = Leave.objects.get(id=pk)
-    form = LeaveForm(instance=leave_form)
+    leave = Leave.objects.get(id=pk)
+    form = LeaveForm(instance=leave)
     if request.method == "POST":
-        form = LeaveForm(request.POST, instance=leave_form)
+        form = LeaveForm(request.POST, instance=leave)
         if form.is_valid():
-            form.save()
+            leave = form.save(commit=False)  # Get the updated leave instance without saving to the database yet
+            leave.user = request.user  # Set the current user as the user for the leave instance
+            leave.save()  # Save the updated leave instance with the updated user
             messages.success(request, "Leave Updated")
-        return redirect("list_leave")
+            return redirect("list_leave")
     context = {"form": form}
     return render(request, "payroll/leave_create.html", context)
 
