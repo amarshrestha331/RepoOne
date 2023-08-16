@@ -13,12 +13,12 @@ class WorkOFScope(models.Model):
 
 
 class Customers(models.Model):
-    customer_name = models.CharField(max_length=40, null=False, blank=False, unique=True)
-    customer_email = models.EmailField(max_length=90, null=False, blank=False, unique=True)
-    customer_phone = models.CharField(max_length=10, null=False, )
+    employees_name = models.CharField(max_length=40, null=False, blank=False, unique=True)
+    employees_email = models.EmailField(max_length=90, null=False, blank=False, unique=True)
+    employees_phone = models.CharField(max_length=10, null=False, )
 
     def __str__(self):
-        return self.customer_name
+        return self.employees_name
 
 
 class Commodities(models.Model):
@@ -54,7 +54,7 @@ class QuotationType(models.Model):
 
 
 class Quotation(models.Model):
-    
+
     STATUS = (
         ("Task Created", "Task Created"),
         ("Task Email Sent", "Task Email Sent"),

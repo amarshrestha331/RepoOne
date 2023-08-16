@@ -142,7 +142,7 @@ Found {{ total_results }} result{{ total_results|pluralize }}<i class="feather i
 <td>{{quotation.commodity.commodity_name}}</td>
 
 <td>{{quotation.weights_of_shipment}} KG</td>
-<td>{{quotation.customer.customer_name}}</td>
+<td>{{quotation.customer.employees_name}}</td>
 
     <td><a href="{% url 'email_page' quotation.id %}" class="btn btn-primary"><i class="fa fa-paper-plane"></i>Send Email</a></td>
 <td><a href="{% url 'quotation_detail' quotation.id %}" class="btn btn-success"><i class="fas fa-eye"></i>View</a></td>

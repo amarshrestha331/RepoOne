@@ -346,7 +346,7 @@ def send_email(request, pk):
     quotation = Quotation.objects.get(id=pk)
     if request.method == "POST":
         template = render_to_string("email/email.template.html", {
-            "customer_name": quotation.customer.customer_name,
+            "customer_name": quotation.customer.employees_name,
             "email": quotation.customer.customer_email,
             "airport_of_origin": quotation.airport_of_origin,
             "airport_of_destination": quotation.airport_of_destination,

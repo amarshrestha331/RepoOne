@@ -19,7 +19,7 @@ class Job(models.Model):
     user = models.ForeignKey(Customer, null=False, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.status} -To:{self.quotation.customer.customer_name}"
+        return f"{self.status} -To:{self.quotation.customer.employees_name}"
 
 
 class Payroll(models.Model):
