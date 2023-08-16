@@ -19,11 +19,11 @@
             </div>
             <h4 class="mb-2">{{request.user.username}}</h4>
             <p class="text-muted mb-4">{{request.user.roles}}<span class="mx-2">|</span> <a href="#!">{{request.user.email}}</a></p>
-            <div class="mb-4 pb-2">
+            <!-- <div class="mb-4 pb-2">
               <a href="{% url 'update_user' request.user.id %}" type="button" class="btn btn-outline-primary btn-floating hvr-pulse">
 
               </a>
-              <p>Update</p>
+              <p>Update</p>-->
             <div class="mb-4 pb-2">
               <a href="{% url 'delete_user' user.id %}" type="button" class="btn btn-outline-primary btn-floating hvr-pulse">
 
@@ -38,7 +38,7 @@
             </div>
 
 
-            <div class="d-flex justify-content-between text-center mt-5 mb-2">
+      <!-- <div class="d-flex justify-content-between text-center mt-5 mb-2">
               <div>
                 <p class="mb-2 h5">0</p>
                 <p class="text-muted mb-0">Quotation Created</p>
@@ -51,7 +51,7 @@
                 <p class="mb-2 h5">0</p>
                 <p class="text-muted mb-0">Email Sent</p>
               </div>
-            </div>
+            </div>-->
           </div>
         </div>
 
