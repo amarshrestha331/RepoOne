@@ -48,31 +48,40 @@ class EmailReceiveThread(threading.Thread):
 
 def dashboard(request):
     if request.user.is_authenticated:
-        quotation = Quotation.objects.all()
-        job_begin = Leave.objects.all()
-        jobs = Job.objects.all()
-        flags = jobs.filter(user=request.user)
-        job = quotation.filter(status="Quotation Email Sent").count()
-        quotation_type = QuotationType.objects.all()
-        users = Customer.objects.all()
-        roles = Roles.objects.all()
-        quotation_count = quotation.count()
-        job_count = job_begin.count()
-        user_count = users.count()
-        roles_count = roles.count()
-        context = {"quotation": quotation, "quotation_type": quotation_type, "users": users, "roles": roles,
-                   "quotation_count": quotation_count,
-                   "user_count": user_count, "roles_count": roles_count, "email_flag": job, "jobs": jobs,
-                   "flags": flags, "job_count": job_count}
-        return render(request, "dashboard1.html", context)
-
+        if request.user.roles.name == 'Worker':
+            quotation = Quotation.objects.filter(users=request.user)
+            quotation_count = quotation.count()
+            context = {"quotation": quotation, "quotation_count": quotation_count, }
+            return render(request, "dashboard1.html", context)
+        else:
+            quotation = Quotation.objects.all()
+            job_begin = Leave.objects.all()
+            jobs = Job.objects.all()
+            flags = jobs.filter(user=request.user)
+            job = quotation.filter(status="Quotation Email Sent").count()
+            quotation_type = QuotationType.objects.all()
+            users = Customer.objects.all()
+            roles = Roles.objects.all()
+            quotation_count = quotation.count()
+            job_count = job_begin.count()
+            user_count = users.count()
+            roles_count = roles.count()
+            context = {"quotation": quotation, "quotation_type": quotation_type, "users": users, "roles": roles,
+                       "quotation_count": quotation_count,
+                       "user_count": user_count, "roles_count": roles_count, "email_flag": job, "jobs": jobs,
+                       "flags": flags, "job_count": job_count}
+            return render(request, "dashboard1.html", context)
     else:
         return redirect("login")
 
 
 def quotation_list(request):
     if request.user.is_authenticated:
-        quotation = Quotation.objects.all()
+        if request.user.roles.name == 'Worker':
+            quotation = Quotation.objects.filter(users=request.user)
+        else:
+            quotation = Quotation.objects.all()
+
         quotation_type = QuotationType.objects.all()
         job = Job.objects.all()
         quotation_count = quotation.count()

@@ -37,9 +37,10 @@ class EmailThread(threading.Thread):
 # Bonus
 def list_bonus(request):
     if request.user.roles.name == 'Worker':
-        bonus = Bonus.objects.filter(user=request.user)
+        bonus = Bonus.objects.filter(salary__user=request.user)
     else:
         bonus = Bonus.objects.all()
+
     context = {"bonus": bonus}
     return render(request, "payroll/bonus.html", context)
 
@@ -109,7 +110,7 @@ def create_attendance(request):
     return render(request, "payroll/create_attendance.html", context)
 
 
-@allowed_users(allowed_roles=["Manger"])
+
 def update_attendance(request, pk):
     attendance = Attendance.objects.get(id=pk)
     form = AttendanceForm(instance=attendance)
@@ -123,7 +124,7 @@ def update_attendance(request, pk):
     return render(request, "payroll/create_attendance.html", context)
 
 
-@allowed_users(allowed_roles=["Manger"])
+
 def delete_attendance(request, pk):
     attendance = Attendance.objects.get(id=pk)
     if request.method == "POST":
@@ -174,7 +175,6 @@ def delete_leave(request, pk):
     return render(request, "system/confirm_delete_leave.html", context)
 
 
-@allowed_users(allowed_roles=["Manger"])
 def update_leave(request, pk):
     leave = Leave.objects.get(id=pk)
     form = LeaveForm(instance=leave)
@@ -191,9 +191,12 @@ def update_leave(request, pk):
 
 
 # Salary
-@allowed_users(allowed_roles=["Manger"])
+
 def list_salary(request):
-    salary = Salary.objects.all()
+    if request.user.roles.name == 'Worker':
+        salary = Salary.objects.filter(user=request.user)
+    else:
+        salary = Salary.objects.all()
     context = {"salary": salary}
     return render(request, "payroll/payroll.list.html", context)
 
