@@ -51,7 +51,23 @@ def dashboard(request):
         if request.user.roles.name == 'Worker':
             quotation = Quotation.objects.filter(users=request.user)
             quotation_count = quotation.count()
-            context = {"quotation": quotation, "quotation_count": quotation_count, }
+            job_begin = Leave.objects.filter(user=request.user)
+            job_count = job_begin.count()
+            users = Customer.objects.all()
+            user_count = users.count()
+            context = {"quotation": quotation, "quotation_count": quotation_count, "users": users, "user_count": user_count,
+                       "job_count": job_count}
+            return render(request, "dashboard1.html", context)
+        elif request.user.roles.name == 'Manager':
+            quotation = Quotation.objects.filter(users=request.user)
+            quotation_count = quotation.count()
+            job_begin = Leave.objects.filter(user=request.user)
+            job_count = job_begin.count()
+            users = Customer.objects.all()
+            user_count = users.count()
+            context = {"quotation": quotation, "quotation_count": quotation_count, "users": users,
+                       "user_count": user_count,
+                       "job_count": job_count}
             return render(request, "dashboard1.html", context)
         else:
             quotation = Quotation.objects.all()
